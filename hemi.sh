@@ -1,5 +1,9 @@
 #!/bin/bash
 
+function show() {
+    echo -e "${BLUE}$1${NC}"
+}
+
 check_latest_version() {
     for i in {1..3}; do
         LATEST_VERSION=$(curl -s https://api.github.com/repos/hemilabs/heminetwork/releases/latest | jq -r '.tag_name')
@@ -29,7 +33,6 @@ show "Generating a new wallet..."
 cat ~/popm-address.json
 
 pubkey_hash=$(jq -r '.pubkey_hash' ~/popm-address.json)
-
 priv_key=$(jq -r '.private_key' ~/popm-address.json)
 static_fee=100
 
